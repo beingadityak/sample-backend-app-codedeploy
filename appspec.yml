@@ -5,6 +5,23 @@ files:
   - source: /
     destination: /home/ubuntu/app
 
+permissions:
+  - object: /home/ubuntu/app
+    pattern: "**"
+    owner: ubuntu
+    group: ubuntu
+    mode: 774
+    type:
+      - file
+      - directory
+  - object: /home/ubuntu
+    pattern: "app"
+    owner: ubuntu
+    group: ubuntu
+    mode: 775
+    type:
+      - directory
+
 hooks:
   # BeforeInstall:
   #   - location: build-vars.sh
