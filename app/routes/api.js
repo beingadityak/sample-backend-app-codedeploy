@@ -142,31 +142,31 @@ module.exports = function(app,express){
         res.status(200).json({
             'endpoints':[{
                 'name' : 'Dilbert',
-                'address' : '/random/dilbert'
+                'address' : '/api/random/dilbert'
             },
             {
                 'name' : 'Calvin & Hobbes',
-                'address' : '/random/calvinhobbes'
+                'address' : '/api/random/calvinhobbes'
             },
             {
                 'name' : 'Garfield',
-                'address' : '/random/garfield'
+                'address' : '/api/random/garfield'
             },
             {
                 'name' : 'Peanuts',
-                'address' : '/random/peanuts'
+                'address' : '/api/random/peanuts'
             },
             {
                 'name' : 'Wizard of Id',
-                'address' : '/random/wizardofid'
+                'address' : '/api/random/wizardofid'
             },
             {
                 'name' : 'The Adventures of Business Cat',
-                'address' : '/random/businesscat'
+                'address' : '/api/random/businesscat'
             },
             {
                 'name' : 'Non Sequitur',
-                'address' : '/random/nonsequitur'
+                'address' : '/api/random/nonsequitur'
             }
         ]
         });

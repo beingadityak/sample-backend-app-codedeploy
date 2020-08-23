@@ -1,0 +1,17 @@
+version: 0.0
+os: linux
+
+files:
+  - source: /
+    destination: /home/ubuntu/app
+
+hooks:
+  # BeforeInstall:
+  #   - location: build-vars.sh
+  #     runas: ubuntu
+  ApplicationStart:
+    - location: scripts/start.sh
+      runas: ubuntu
+  ApplicationStop:
+    - location: scripts/stop.sh
+      runas: ubuntu
