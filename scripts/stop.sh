@@ -19,7 +19,6 @@ cd $AppLocation
 # ./build_vars.sh
 
 ServiceType_tag=$(get_ServiceTypeTag)
-ServiceType_tag=`echo ${ServiceType_tag,,}`
 case ServiceType_tag in
     api)
         echo "Got tag: $ServiceType_tag"
