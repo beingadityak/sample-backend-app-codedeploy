@@ -22,7 +22,8 @@ npm install
 # ./build_vars.sh
 
 ServiceType_tag=$(get_ServiceTypeTag)
-case ServiceType_tag in
+ServiceType_tag=`echo ${ServiceType_tag,,}`
+case $ServiceType_tag in
     api)
         echo "Got tag: $ServiceType_tag"
         pm2 start ecosystem.config.js --env production --only api

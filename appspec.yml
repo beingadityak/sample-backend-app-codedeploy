@@ -12,8 +12,14 @@ permissions:
     group: ubuntu
     mode: 774
     type:
-      - file
       - directory
+  - object: /home/ubuntu/app
+    pattern: "**"
+    owner: ubuntu
+    group: ubuntu
+    mode: 655
+    type:
+      - file
   - object: /home/ubuntu
     pattern: "app"
     owner: ubuntu
