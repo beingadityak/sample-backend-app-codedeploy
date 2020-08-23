@@ -23,18 +23,18 @@ ServiceType_tag=`echo ${ServiceType_tag,,}`
 case ServiceType_tag in
     api)
         echo "Got tag: $ServiceType_tag"
-        pm2 stop api
-        pm2 delete api
+        pm2 stop api || true
+        pm2 delete api || true
         ;;
     cron)
         echo "Got tag: $ServiceType_tag"
-        pm2 stop cron
-        pm2 delete cron
+        pm2 stop cron || true
+        pm2 delete cron || true
         ;;
     queue)
         echo "Got tag: $ServiceType_tag"
-        pm2 stop queue
-        pm2 delete queue
+        pm2 stop queue || true
+        pm2 delete queue || true
         ;;
     *)
         echo "Got invalid tag!"
