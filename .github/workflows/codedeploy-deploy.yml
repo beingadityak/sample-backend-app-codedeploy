@@ -23,7 +23,7 @@ jobs:
             --application-name sample-backend-app
             --description "Revision for sample-backend-app"
             --ignore-hidden-files
-            --s3-location s3://sample-backend-app-artifacts/backend-api-code-"$GITHUB_SHA".zip
+            --s3-location s3://sample-backend-app-artifacts/backend-api-code-$GITHUB_SHA.zip
             --source .
       - name: AWS Create deployment
         uses: ItsKarma/aws-cli@v1.70.0
@@ -38,4 +38,4 @@ jobs:
             --deployment-config-name CodeDeployDefault.OneAtATime
             --deployment-group-name api-server
             --file-exists-behavior OVERWRITE
-            --s3-location bucket=sample-backend-app-artifacts,key=backend-api-code-"$GITHUB_SHA".zip,bundleType=zip
+            --s3-location bucket=sample-backend-app-artifacts,key=backend-api-code-$GITHUB_SHA.zip,bundleType=zip
