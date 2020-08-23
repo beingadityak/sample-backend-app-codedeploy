@@ -26,15 +26,15 @@ ServiceType_tag=`echo ${ServiceType_tag,,}`
 case ServiceType_tag in
     api)
         echo "Got tag: $ServiceType_tag"
-        pm2 start ecosystem.config.js --only api
+        pm2 start ecosystem.config.js --env production --only api
         ;;
     cron)
         echo "Got tag: $ServiceType_tag"
-        pm2 start ecosystem.config.js --only cron
+        pm2 start ecosystem.config.js --env production --only cron
         ;;
     queue)
         echo "Got tag: $ServiceType_tag"
-        pm2 start ecosystem.config.js --only queue
+        pm2 start ecosystem.config.js --env production --only queue
         ;;
     *)
         echo "Got invalid tag!"
