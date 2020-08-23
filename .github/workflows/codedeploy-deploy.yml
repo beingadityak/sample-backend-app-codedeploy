@@ -1,0 +1,41 @@
+name: Deploy the backend to Servers using CodeDeploy
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  codedeploy-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: AWS CodeDeploy Push
+        uses: ItsKarma/aws-cli@v1.70.0
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
+        with:
+          args: >-
+            deploy push
+            --application-name sample-backend-app
+            --description "Revision for sample-backend-app"
+            --ignore-hidden-files
+            --s3-location s3://sample-backend-app-artifacts/backend-api-code-${GITHUB_SHA}.zip
+            --source .
+      - name: AWS Create deployment
+        uses: ItsKarma/aws-cli@v1.70.0
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
+        with:
+          args: >-
+            deploy create-deployment
+            --application-name sample-backend-app
+            --deployment-config-name CodeDeployDefault.OneAtATime
+            --deployment-group-name api-server
+            --file-exists-behavior OVERWRITE
+            --s3-location bucket=sample-backend-app-artifacts,key=backend-api-code-${GITHUB_SHA}.zip,bundleType=zip
